@@ -1,11 +1,61 @@
 import 'package:flutter/material.dart';
+
 void main() {
-  runApp( //takes the given widget and makes it the root of tge widget.
-    const Center( // Widget 1 (const acts as a constructor because the class doesn't have any members.)
-      child: Text( // widget 2
-        'Hello, world!',
-        textDirection: TextDirection.ltr,
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String buttonName = "Tic";
+  int currIdx = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Dr.Dre says hell yeah..."),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    buttonName = "Toc";
+                  });
+                },
+                child: Text(buttonName),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Yoyo"),
+              ),
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              label: "Home",
+              icon: Icon(Icons.home),
+            ),
+            BottomNavigationBarItem(
+              label: "Settings",
+              icon: Icon(Icons.settings),
+            )
+          ],
+          currentIndex: currIdx,
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
